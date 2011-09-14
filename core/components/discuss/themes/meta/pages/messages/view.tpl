@@ -36,7 +36,7 @@
 					
 						<div class="Box GuestBox">
 							<h4>Actions & Info</h4>
-							<p>[[+actionbuttons]]</p>
+							<p class="actions">[[+actionbuttons]]</p>
 							<p>[[+views]] total views.</p>
 						</div>
 

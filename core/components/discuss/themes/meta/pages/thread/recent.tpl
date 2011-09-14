@@ -23,37 +23,26 @@
 
 				<div id="Panel">
 					<div class="PanelBox">
-					
-						<div class="Box GuestBox">
-						   <h4>Welcome back [[+modx.user.username]]</h4>
-							<p>[[+actionbuttons]]</p>
 
-							[[+belowThreads]]
+						<div class="Box GuestBox">
+						   <h4>Actions &amp; Info</h4>
+							<p>[[+actionbuttons]]</p>
 
 							<p>[[+readers]]</p>
 							<p>[[+moderators]]</p>
 						</div>
 						
+						<div class="Box GuestBox">
+						   <h4>Don't Be That Guy</h4>
+							<p>Be nice, respectful and patient. Inflamatory or inappropriate posts will get your post nuked and flood your life with bans and bad karma.</p>
+						</div>
 						
-						[[<div class="Box BoxCategories">
-							<h4><a href="/categories/all">Categories</a></h4>
-							<ul class="PanelInfo PanelCategories">
-								<li><span><strong><a href="/discussions">All Discussions</a></strong><span class="Count">[[+totalPosts]]</span></span></li>
-								<li class="Heading">Partners</li>
-								<li class="Depth2 active"><strong><a href="/categories/-important-news">Sample 1 Active</a></strong><span class="Count">0</span></li>
-								<li class="Depth2"><strong><a href="/categories/security-notices">Sample 2</a></strong><span class="Count">0</span></li>
-								<li class="Heading">General</li>
-								<li class="Depth2 active"><strong><a href="/categories/-important-news">Sample 1 Active</a></strong><span class="Count">0</span></li>
-								<li class="Depth2"><strong><a href="/categories/security-notices">Sample 2</a></strong><span class="Count">0</span></li>
-								<li class="Heading">Evolution</li>
-								<li class="Depth2 active"><strong><a href="/categories/-important-news">Sample 1 Active</a></strong><span class="Count">0</span></li>
-								<li class="Depth2"><strong><a href="/categories/security-notices">Sample 2</a></strong><span class="Count">0</span></li>
-								<li class="Heading">Revolution</li>
-								<li class="Depth2 active"><strong><a href="/categories/-important-news">Sample 1 Active</a></strong><span class="Count">0</span></li>
-								<li class="Depth2"><strong><a href="/categories/security-notices">Sample 2</a></strong><span class="Count">0</span></li>
-								<li class="Heading">International</li>
-								<li class="Depth2 active"><strong><a href="/categories/-important-news">Sample 1 Active</a></strong><span class="Count">0</span></li>
-								<li class="Depth2"><strong><a href="/categories/security-notices">Sample 2</a></strong><span class="Count">0</span></li>
-							</ul>
-						</div>]]
+						<div class="Box GuestBox">
+						   <h4>Help Us Help You</h4>
+							<p>Use a title that gives insight into your post and limit your posts to 1. Remember, this is an open source project and folks aren't paid to help you here. If you're experiencing problems, please supply adequate technical details.</p>
+						</div>
+						
+
+
+						
 					</div>

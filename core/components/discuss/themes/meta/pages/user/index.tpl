@@ -4,6 +4,7 @@
 <div class="dis-profile left">
 
 <form action="[[~[[*id]]]]user/?user=[[+id]]" method="post" id="dis-user-edit-form" style="border: 0;">
+
 	<ul class="DataList CategoryList CategoryListWithHeadings">
 	
 		<li class="Item CategoryHeading Depth1">
@@ -30,16 +31,10 @@
 								<li>[[%discuss.age]]: <strong>[[+age]]</strong></li>
 								
 								<li>[[%discuss.location]]: <strong>[[+location]]</strong></li>
-
 							</ul>
 
 
-
 </form>
-
-
-
-
 
 
 

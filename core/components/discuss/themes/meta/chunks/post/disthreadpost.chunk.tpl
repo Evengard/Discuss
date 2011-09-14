@@ -25,7 +25,7 @@
         	<h4 class="created">[[+author.username_link]] [[+createdon]]</h4>
         	<!--<a href="" class="dis-fav">Favorite</a>-->
         	[[+link_mark_as_answer]]
-            <div class="dis-actions"><span><ul>[[+actions]]<li>[[+report_link]]</li></ul></span></div>
+            <div class="dis-actions"><span><ul><li>[[+actionbuttons]]</li><li>[[+report_link]]</li></ul></span></div>
         	<div>[[+content]]</div>
             
 		    <div class="dis-post-ct" id="dis-thread-ct-[[+id]]">
