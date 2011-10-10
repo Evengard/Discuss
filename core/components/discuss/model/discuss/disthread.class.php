@@ -74,6 +74,8 @@ class disThread extends xPDOSimpleObject {
      * @var boolean $hasSubscription
      */
     public $hasSubscription;
+    /** @var modX $xpdo */
+    public $xpdo;
     
     /**
      * Fetch a thread, but check permissions first
@@ -93,11 +95,6 @@ class disThread extends xPDOSimpleObject {
         $c->select(array(
             'FirstPost.title',
             'Board.rtl',
-            '(SELECT GROUP_CONCAT(pAuthor.id)
-                FROM '.$modx->getTableName('disPost').' AS pPost
-                INNER JOIN '.$modx->getTableName('disUser').' AS pAuthor ON pAuthor.id = pPost.author
-                WHERE pPost.thread = disThread.id
-             ) AS participants',
         ));
         if ($integrated) {
             $c->where(array(
@@ -144,13 +141,30 @@ class disThread extends xPDOSimpleObject {
                     WHERE sqThreadUsers.thread = disThread.id
                  ) AS participants_usernames',
             ));
+        } else {
+            $c->select(array(
+                '(SELECT GROUP_CONCAT(sqPostAuthor.username)
+                    FROM '.$modx->getTableName('disPost').' AS sqPosts
+                        INNER JOIN '.$modx->getTableName('disUser').' AS sqPostAuthor
+                        ON sqPostAuthor.id = sqPosts.author
+                    WHERE sqPosts.thread = disThread.id
+                 ) AS participants_usernames',
+            ));
         }
         /** @var disThread $thread */
         $thread = $modx->getObject('disThread',$c);
-        if ($thread && $type == disThread::TYPE_MESSAGE) {
-            $pu = array_unique(explode(',',$thread->get('participants_usernames')));
-            asort($pu);
-            $thread->set('participants_usernames',implode(',',$pu));
+        if ($thread) {
+            $userUrl = $modx->discuss->request->makeUrl('u');
+            $participants = $thread->get('participants_usernames');
+            if (!empty($participants)) {
+                $pu = array_unique(explode(',',$participants));
+                asort($pu);
+                foreach ($pu as &$username) {
+                    $username = '<a href="'.$userUrl.'/'.$username.'/">'.$username.'</a>';
+                }
+                $pu = implode(', ',$pu);
+                $thread->set('participants_usernames',trim($pu));
+            }
         }
         return $thread;
     }
@@ -275,7 +289,7 @@ class disThread extends xPDOSimpleObject {
         $c->innerJoin('disPost','LastPost');
         $c->innerJoin('disThread','LastPostThread','LastPostThread.id = LastPost.thread');
         $c->innerJoin('disUser','LastAuthor');
-        //$c->leftJoin('disThreadRead','Reads','Reads.thread = disThread.id AND Reads.user = '.$modx->discuss->user->get('id'));
+        $c->leftJoin('disThreadRead','Reads','Reads.thread = disThread.id AND Reads.user = '.$modx->discuss->user->get('id'));
         $c->leftJoin('disBoardUserGroup','UserGroups','Board.id = UserGroups.board');
         $groups = $modx->discuss->user->getUserGroups();
         if (!$modx->discuss->user->isAdmin()) {
@@ -296,18 +310,11 @@ class disThread extends xPDOSimpleObject {
         $daysAgo = time() - ($modx->getOption('discuss.new_replies_threshold',null,14) * 24 * 60 * 60);
         $modx->setLogTarget('ECHO');
         $c->where(array(
-            //'Reads.thread:IS' => null,
+            'Reads.thread:IS' => null,
             'Board.status:!=' => disBoard::STATUS_INACTIVE,
-            $modx->discuss->user->get('id').' IN(
-             (
-                SELECT GROUP_CONCAT(pAuthor.id)
-                FROM '.$modx->getTableName('disPost').' AS pPost
-                INNER JOIN '.$modx->getTableName('disUser').' AS pAuthor ON pAuthor.id = pPost.author
-                WHERE pPost.thread = disThread.id
-             )
-            )',
             'LastPost.author:!=' => $modx->discuss->user->get('id'),
-            'disThread.post_last_on:>=' => $daysAgo,
+            //'disThread.post_last_on:>=' => $daysAgo,
+            'FIND_IN_SET('.$modx->discuss->user->get('id').',`disThread`.`participants`) > 0',
         ));
         /* ignore spam/recycle bin boards */
         $spamBoard = $modx->getOption('discuss.spam_bucket_board',null,false);
@@ -518,6 +525,49 @@ class disThread extends xPDOSimpleObject {
             $this->xpdo->cacheManager->delete('discuss/board/index/');
             $this->xpdo->cacheManager->delete('discuss/recent/');
         }
+    }
+
+    /**
+     * Add a User to the participants field
+     * 
+     * @param string|int $id
+     * @return bool
+     */
+    public function addParticipant($id) {
+        $participants = explode(',',$this->get('participants'));
+        array_push($participants,$id);
+        $participants = array_unique($participants);
+        $participants = trim(implode(',',$participants),',');
+        $this->set('participants',$participants);
+        return $this->save();
+    }
+
+    /**
+     * Remove a User from the participants field
+     * @param int|string $id
+     * @param int|string $postId
+     * @return bool
+     */
+    public function removeParticipant($id,$postId) {
+        $removed = false;
+        /* ensure user doesn't have an another post */
+        $userPostsInThread = $this->xpdo->getCount('disPost',array(
+            'thread:=' => $this->get('id'),
+            'id:!=' => $postId,
+            'author' => $id,
+        ));
+        if (empty($userPostsInThread)) {
+            $id = (string)$id;
+            $participants = explode(',',$this->get('participants'));
+            $idx = array_search($id,$participants);
+            if ($idx !== false) {
+                $participants = array_splice($participants,$idx,$idx+1);
+                $participants = trim(implode(',',$participants),',');
+                $this->set('participants',$participants);
+                $removed = $this->save();
+            }
+        }
+        return $removed;
     }
 
     
@@ -764,11 +814,16 @@ class disThread extends xPDOSimpleObject {
         ));
         $c->sortby('Ancestors.depth','DESC');
         $ancestors = $this->xpdo->getCollection('disBoard',$c);
+
+        $idx = 0;
+        $total = count($ancestors);
         $trail = empty($defaultTrail) ? array(array(
             'url' => $this->xpdo->discuss->request->makeUrl(),
             'text' => $this->xpdo->getOption('discuss.forum_title'),
+            'last' => $total == 0,
         )) : $defaultTrail;
         $category = false;
+        
         /** @var disBoardClosure $ancestor */
         foreach ($ancestors as $ancestor) {
             if (empty($category)) {
@@ -777,14 +832,16 @@ class disThread extends xPDOSimpleObject {
                     $trail[] = array(
                         'url' => $this->xpdo->discuss->request->makeUrl('',array('category' => $category->get('id'))),
                         'text' => $category->get('name'),
+                        'last' => false,
                     );
                 }
             }
             $trail[] = array(
                 'url' => $this->xpdo->discuss->request->makeUrl('board',array('board' => $ancestor->get('id'))),
                 'text' => $ancestor->get('name'),
-                'last' => !$showTitle,
+                'last' => empty($showTitle) && $idx >= ($total-1) ? true : false,
             );
+            $idx++;
         }
         if ($showTitle) {
             $title = str_replace(array('[',']'),array('&#91;','&#93;'),$this->get('title'));
