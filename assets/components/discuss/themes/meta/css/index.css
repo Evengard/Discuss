@@ -162,7 +162,7 @@ a:hover {
 
 input[type="submit"],
 input[type="button"] {
-    color: #fff;
+    color: #555;
 	-moz-transition: all 0.4s ease 0s;
     background: none;
  	behavior:url(pie.htc);
@@ -623,10 +623,9 @@ input[type="submit"],
 input[type="button"]:hover,
 input[type="submit"]:hover,
 .Button:hover {
-	background: #026598 !important;
-	color: #fff !important;
-	border: 1px solid #026598 !important;
+	color: #fff;
  	behavior:url(pie.htc);
+ 	background-color: transparent;
 	}
 
 	
@@ -1026,6 +1025,14 @@ li a.dis-no-pages {
 	}
 	
 /*  Post Pages  */
+
+li div.dis-post {
+	display: block;
+	margin: 0 0 0 20px;
+	border: 1px solid #555;
+	border-width: 0 0 1px 0;
+	}
+	
 .dis-post-author {
 	position: relative;
  	display: block;
@@ -1265,6 +1272,7 @@ blockquote:after {
 
 .dis-form {
 	position: relative;
+	margin: 0 0 25px 0;
 	}
 
 .dis-form input, .dis-form select, .dis-form textarea, .dis-form-field-solo {
@@ -1421,7 +1429,6 @@ a.dis-message-write:hover {
 	position: relative;
 	z-index: 1500;
 	color: #333;
-    border-color: #ababab #dedede #dedede #ababab;
     background-color: #fff;
 	-moz-transition-duration: .3s;
 	-moz-transition-delay: 0s;
@@ -1441,14 +1448,9 @@ a.dis-message-write,
 a.dis-preview {
 	padding: 0 5px 0;
 	font-size: 11px;
-	-moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
     background: none repeat scroll 0 0 #efefef;
     border-color: #ddd;
-    border-radius: 6px 6px 6px 6px;
+    border-radius: 2px;
     border-style: solid;
     border-width: 1px;
     color: #777;
@@ -1664,5 +1666,9 @@ div#overlay-20 {
     overflow-x: auto;
 }
 
-
+#copyright {
+	margin: 20px auto 0;
+	width: 960px;
+	text-align: right;
+	}
 

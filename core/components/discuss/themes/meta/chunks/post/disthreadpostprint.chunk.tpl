@@ -1,4 +1,4 @@
-<li class="dis-post" id="dis-post-[[+id]]">
+<li id="dis-post-[[+id]]">
     <div class="dis-post-header">
         <h3 class="dis-post-title" post="[[+id]]">[[+title]]<span class="idx">#[[+idx]]</span></h3>
         <div class="dis-post-author" id="dis-post-author-[[+id]]">
@@ -9,7 +9,6 @@
                 <span>
                     [[+author.username]]
                 </span>
-                <br class="clearfix" />
             </div>
         </div>
     </div>
@@ -26,5 +25,4 @@
         <br class="clear" />
         [[+children:notempty=`<ul class="dis-list [[+class]]">[[+children]]</ul>`]]
     </div>
-    <br class="clearfix" />
 </li>

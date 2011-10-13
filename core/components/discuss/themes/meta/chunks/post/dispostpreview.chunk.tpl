@@ -1,4 +1,4 @@
-<li class="dis-post">
+<li>
     <div class="dis-post-header">
 		<h1>[[+title]]</h1>
         <div class="dis-post-author">

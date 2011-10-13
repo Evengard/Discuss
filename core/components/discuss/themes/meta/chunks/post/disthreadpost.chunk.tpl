@@ -1,5 +1,5 @@
 <li class="[[+class]]" id="dis-post-[[+id]]">
-    <div class="dis-post">
+    <div class="dis-post clearfix">
         <div class="dis-post-author" id="dis-post-author-[[+id]]">
             <div class="dis-author">
             	<a href="[[~[[*id]]]]user/?user=[[+author.id]]" class="auth-avatar">[[+author.avatar]]</a>
@@ -46,7 +46,7 @@
 		                
 		            </div>
 		        </div>
-		         	<br class="clearfix" />
+
 		        [[+children:notempty=`<ul class="dis-list [[+children_class]]">[[+children]]</ul>`]]
 		    </div>
 		    
