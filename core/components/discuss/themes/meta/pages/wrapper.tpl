@@ -78,7 +78,7 @@
 	
 		<div id="frame">
 		
-			<div id="body">
+			<div id="Body">
 			
 				<div id="Content">
 					[[+content]]

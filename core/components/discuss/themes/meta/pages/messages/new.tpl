@@ -62,7 +62,7 @@
 [[+bottom]]
 
 <aside>
-				<hr class="line" />
+				
     <div class="PanelBox">
 
 

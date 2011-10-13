@@ -31,7 +31,7 @@
 
 
 <aside>
-				<hr class="line" />
+				
     <div class="PanelBox">
 	[[!$post-sidebar?disection=`new-message`]]
 

@@ -26,7 +26,7 @@
 
 
 <aside>
-    <hr class="line" />
+    
     <div class="PanelBox">
         [[!+discuss.user.id:notempty=`<div class="Box">
             <h4>Actions</h4>

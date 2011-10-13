@@ -28,7 +28,7 @@
 
 
 <aside>
-	<hr class="line" />
+	
     	<div class="PanelBox">
 
         	<div class="Box">
