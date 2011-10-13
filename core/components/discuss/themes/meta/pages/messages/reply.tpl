@@ -7,14 +7,22 @@
   &validationErrorMessage=`<p class="error">A form validation error occurred. Please check the values you have entered: [[+errors]]</p>`
 ]]
 
+
+
+
+    
+    
+    
+
 <form action="[[~[[*id]]]]messages/reply?thread=[[!+fi.thread]]" method="post" class="dis-form" id="dis-reply-post-form" enctype="multipart/form-data">
 
-	<ul class="DataList CategoryList CategoryListWithHeadings">
-	
-		<li class="Item CategoryHeading Depth1">
-	    <div class="ItemContent Category">[[%discuss.post_reply? &namespace=`discuss` &topic=`post`]]</div>
-	    </li>
-	</ul>
+    <div class="preview_toggle">
+		<a href="#" class="dis-message-write selected" id="dis-edit-btn">edit</a>
+        <a href="#" class="dis-preview" id="dis-preview-btn">view</a>
+    </div>
+	<div id="dis-message-preview"></div>
+
+	<h1>[[%discuss.post_reply? &namespace=`discuss` &topic=`post`]]</h1>
     <input type="hidden" name="thread" value="[[!+fi.thread]]" />
     <input type="hidden" name="post" value="[[!+fi.post]]" />
 
@@ -22,15 +30,15 @@
 
     <label for="dis-reply-post-title">[[%discuss.title]]:
         <span class="error">[[!+fi.error.title]]</span>
-    </label>
-    <input type="text" name="title" id="dis-reply-post-title" value="[[!+fi.title]]" />
+    </label><br />
+    <input type="text" name="title" id="dis-reply-post-title" value="[[!+fi.title]]" /><br />
 
 [[+is_author:notempty=`
     <label for="dis-reply-participants">[[%discuss.participants]]:
         <span class="error">[[!+fi.error.participants_usernames]]</span>
         <span class="small">[[%discuss.participants_desc]]</span>
-    </label>
-    <input type="text" name="participants_usernames" id="dis-reply-participants" value="[[!+fi.participants_usernames]]" />
+    </label><br />
+    <input type="text" name="participants_usernames" id="dis-reply-participants" value="[[!+fi.participants_usernames]]" /><br />
 `]]
 
 
@@ -39,17 +47,16 @@
     
     
     
-    <label for="dis-thread-message">
+    <label for="dis-thread-message">Reply:
         <span class="error">[[!+fi.error.message]]</span>
-    </label>
+    </label><br />
     <textarea name="message" id="dis-thread-message" cols="80" rows="7">[[!+fi.message]]</textarea>
     <br class="clearfix" />
     
-    <label for="dis-reply-post-attachment">[[%discuss.attachments]]:
-        <span class="small dis-add-attachment"><a href="javascript:void(0);">[[%discuss.attachment_add]]</a>
-        <br />([[%discuss.attachments_max? &max=`[[+max_attachments]]`]])</span>
+    <label for="dis-reply-post-attachment">
+        <span class="small dis-add-attachment"><a href="javascript:void(0);">[[%discuss.attachment_add]]</a> ([[%discuss.attachments_max? &max=`[[+max_attachments]]`]])</span>
         <span class="error">[[+error.attachments]]</span>
-    </label>
+    </label><br />
     <input type="file" name="attachment1" id="dis-reply-post-attachment" />    
     
     <div id="dis-attachments"></div>
@@ -57,21 +64,17 @@
     
     <div class="dis-form-buttons">
         <input type="submit" class="dis-action-btn" name="dis-post-reply" value="[[%discuss.message_send]]" />
-        <input type="button" class="dis-action-btn dis-reply-post-preview" name="dis-post-preview" value="[[%discuss.preview]]" />
         <input type="button" class="dis-action-btn" value="[[%discuss.cancel]]" onclick="location.href='[[~[[*id]]]]messages/view?thread=[[+thread]]';" />
     </div>
 </form>
-<div id="dis-reply-post-preview"></div>
+
 
 
 <div class="dis-thread-posts">
-		<ul class="DataList CategoryList CategoryListWithHeadings">
-	
-		<li class="Item CategoryHeading Depth1">
-	    <div class="ItemContent Category">[[%discuss.thread_summary]]</div>
-	    </li>
-	</ul>
-[[+thread_posts]]
+		<ul class="dis-list">
+			<li><h1>[[%discuss.thread_summary]]</h1></li>
+			[[+thread_posts]]
+		</ul>
 </div>
 
 [[+discuss.error_panel]]
@@ -81,14 +84,12 @@
 			</div><!-- Close Content From Wrapper -->
 [[+bottom]]
 
-				<div id="Panel">
-					<div class="PanelBox">
-						
-						<div class="Box GuestBox">
-						   <h4>Don't Be That Guy</h4>
-							<p>Be nice, respectful and patient. Inflamatory or inappropriate posts will get your post nuked and flood your life with bans and bad karma.</p>
-						</div>
-						
+<aside>
+				<hr class="line" />
+    <div class="PanelBox">
 
-						
-					</div>
+
+		[[!$post-sidebar?disection=`new-message`]]
+
+
+</aside>

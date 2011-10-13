@@ -1,77 +1,84 @@
 [[!FormIt?
     &submitVar=`dis-add-ban`
     &hooks=`postHook.DiscussAddBan`
+    &validate=`email:required`
+    &successMessage=`Ban added.`
 ]]
 
+<div class="dis-profile">
+<form action="[[~[[*id]]]]user/ban?u=[[+fi.id]]" method="post" class="dis-form dis-ban-form" id="dis-user-ban-formz">
 
+	<h1>[[%discuss.ban_user_header? &username=`[[+fi.username]]`]]</h1>
 
-<div class="dis-profile left">
+<p>[[+fi.successMessage]]</p>
 
-
-
-
-<form action="[[~[[*id]]]]user/ban?u=[[+fi.id]]" method="post" class="dis-form dis-ban-form" id="dis-user-ban-form" style="border: 0;">
-	<ul class="DataList CategoryList CategoryListWithHeadings">
-	
-		<li class="Item CategoryHeading Depth1">
-	    <div class="ItemContent Category">[[%discuss.ban_user_header? &username=`[[+fi.username]]`]]</div>
-	    </li>
-	</ul>
-
-<p style="color: green;">[[+fi.successMessage]]</p>
-
-    <input type="hidden" name="id" value="[[+fi.id]]" />
+    <input type="hidden" name="disUser" value="[[+fi.disUser]]" /> 
     <input type="hidden" name="user" value="[[+fi.user]]" />
-
+    
     <label for="dis-ban-reason">[[%discuss.ban_reason]]:
         <span class="small">[[%discuss.ban_reason_desc]]</span>
         <span class="error">[[+fi.error.reason]]</span>
-    </label>
-    <textarea name="reason" id="dis-ban-reason" style="width: 300px; height: 80px;">[[+fi.reason]]</textarea>
+    </label><br class="clearfix" />
+    
+    <textarea name="reason" id="dis-ban-reason">[[+fi.reason]]</textarea>
+    <br class="clearfix" />
 
-
-    <label for="dis-ban-cb-iprange">[[%discuss.ban_iprange]]:
+    <label for="dis-ban-cb-iprange"><input type="checkbox" name="cb_ip_range" id="dis-ban-cb-iprange" />[[%discuss.ban_iprange]]:
         <span class="small">[[%discuss.ban_iprange_desc]]</span>
         <span class="error">[[+fi.error.ip_range]]</span>
     </label>
-    <input type="checkbox" name="cb_ip_range" id="dis-ban-cb-iprange" />
+    
+    
     <input type="text" name="ip_range" id="dis-ban-iprange" value="[[+fi.ip_range]]" />
-
-    <label for="dis-ban-cb-hostname">[[%discuss.ban_hostname]]:
+    
+    
+    
+    <label for="dis-ban-cb-hostname"><input type="checkbox" name="cb_hostname" id="dis-ban-cb-hostname" />[[%discuss.ban_hostname]]:
         <span class="small">[[%discuss.ban_hostname_desc]]</span>
         <span class="error">[[+fi.error.hostname]]</span>
     </label>
-    <input type="checkbox" name="cb_hostname" id="dis-ban-cb-hostname" />
+    
+    
     <input type="text" name="hostname" id="dis-ban-hostname" value="[[+fi.hostname]]" />
-
-    <label for="dis-ban-cb-email">[[%discuss.ban_email]]:
+    
+    
+    
+    <label for="dis-ban-cb-email"><input type="checkbox" name="cb_email" id="dis-ban-cb-email" />[[%discuss.ban_email]]:
         <span class="small">[[%discuss.ban_email_desc]]</span>
         <span class="error">[[+fi.error.email]]</span>
     </label>
-    <input type="checkbox" name="cb_email" id="dis-ban-cb-email" />
+    
+    
     <input type="text" name="email" id="dis-ban-email" value="[[+fi.email]]" />
-
-    <label for="dis-ban-cb-username">[[%discuss.ban_username]]:
+    
+    
+    
+    <label for="dis-ban-cb-username"><input type="checkbox" name="cb_username" id="dis-ban-cb-username" />[[%discuss.ban_username]]:
         <span class="small">[[%discuss.ban_username_desc]]</span>
         <span class="error">[[+fi.error.username]]</span>
     </label>
-    <input type="checkbox" name="cb_username" id="dis-ban-cb-username" />
+    
+    
     <input type="text" name="username" id="dis-ban-username" value="[[+fi.username]]" />
-
+    
+    
+    
     <span class="label-inline">
-        <span class="label-inline-th">[[%discuss.ban_expireson]]</span>
-        <input type="text" name="expireson" id="dis-ban-expireson" value="[[+fi.expireson]]" class="label-inline-text" style="width: 40px;" />
+        <label for="dis-ban-cb-username"><span class="label-inline-th">[[%discuss.ban_expireson]]</span>
         <span class="label-inline-td">[[%discuss.days]]</span>
-        <br class="clear" />
-        <span class="small">[[%discuss.ban_expireson_desc]]</span>
+        <span class="small">[[%discuss.ban_expireson_desc]]</span></label>
+    
+        <input type="text" name="expireson" id="dis-ban-expireson" value="[[+fi.expireson]]" class="label-inline-text" />
         <span class="error">[[+fi.error.expireson]]</span>
     </span>
-
+    
+    
     <label for="dis-ban-notes">[[%discuss.ban_notes]]:
         <span class="small">[[%discuss.ban_notes_desc]]</span>
         <span class="error">[[+fi.error.notes]]</span>
     </label>
-    <textarea name="notes" id="dis-ban-notes" style="width: 300px; height: 80px;">[[+fi.notes]]</textarea>
+    
+    <textarea name="notes" id="dis-ban-notes">[[+fi.notes]]</textarea>
 
     [[+other_fields]]
 
@@ -90,22 +97,21 @@
 	[[+bottom]]
 
 
-				<div id="Panel">
-					<div class="PanelBox">
-					
-						<div class="Box GuestBox">
-						   <h4>[[+name]]'s Profile</h4>
-							<ul class="PanelInfo PanelCategories">
+<aside>
+				<hr class="line" />
+    <div class="PanelBox">
 
-								<li class="Heading"><img src="[[+avatarUrl]]" alt="[[+username]]" />
-							<br /><span class="small">[[+title]]</span></li>
-							</ul>
-							
-						</div>
-						
-						<div class="Box BoxCategories">
-							[[+usermenu]]
+        <div class="Box">
+           <h4>[[+username]]'s Profile</h4>
+            <ul class="panel_info">
 
+                <li class="Heading"><img src="[[+avatarUrl]]" alt="[[+username]]" />
+            <br /><span class="small">[[+title]]</span></li>
+            </ul>
 
-						</div>
-					</div>
+        </div>
+        <div class="Box">
+            [[+usermenu]]
+        </div>
+
+</aside>

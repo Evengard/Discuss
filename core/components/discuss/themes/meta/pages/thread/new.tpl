@@ -1,59 +1,67 @@
 
 
 [[!FormIt?
-  &submitVar=`dis-post-new`
+  &submitVar=`dis-post-reply`
   &hooks=`postHook.DiscussNewThread`
   &validate=`title:required,message:required:allowTags`
 ]]
 
 
+
+    
 <form action="[[~[[*id]]]]thread/new?board=[[+id]]" method="post" class="dis-form" id="dis-new-thread-form" enctype="multipart/form-data">
-	<ul class="DataList CategoryList CategoryListWithHeadings">
-	
-		<li class="Item CategoryHeading Depth1">
-	    <div class="ItemContent Category">[[%discuss.start_new_thread? &namespace=`discuss` &topic=`post`]]</div>
-	    </li>
-	</ul>
+
+    <div class="preview_toggle">
+		<a href="#" class="dis-message-write selected" id="dis-edit-btn">edit</a>
+        <a href="#" class="dis-preview" id="dis-preview-btn">view</a>
+    </div>
+	<div id="dis-message-preview"></div>
+
+	<h1>[[%discuss.start_new_thread? &namespace=`discuss` &topic=`post`]]</h1>
     
     <input type="hidden" name="board" value="[[+id]]" />
-    
+    	
+    	<label><input type="radio" name="class_key" value="disThreadDiscussion" checked="checked" /> [[%discuss.discussion]]</label>
+    	<label><input type="radio" name="class_key" value="disThreadQuestion" /> [[%discuss.question_and_answer]]</label>
+
+<br class="clearfix" />
+
     <label for="dis-new-thread-title">[[%discuss.title]]:
         <span class="error">[[!+fi.error.title]]</span>
-    </label>
-    <input type="text" name="title" id="dis-new-thread-title" value="[[!+fi.title]]" />
+    </label><br class="clearfix" />
 
-    <label for="dis-new-thread-type">[[%discuss.thread_type]]:</label>
-    <select name="class_key" id="dis-new-thread-type">
-        <option value="disThreadDiscussion">[[%discuss.discussion]]</option>
-        <option value="disThreadQuestion">[[%discuss.question_and_answer]]</option>
-    </select>
-
-    <div class="wysi-buttons">[[+buttons]]</div>
+    <input type="text" name="title" id="dis-new-thread-title" value="[[!+fi.title]]" /><br class="clearfix" />
 
 
-    <label for="dis-thread-message">
+
+    
+    
+<br class="clearfix" />
+
+    <div class="wysi-buttons">[[+buttons]]</div><br class="clearfix" />
+
+
+
         <span class="error">[[!+fi.error.message]]</span>
-    </label>
-    <textarea name="message" id="dis-thread-message" cols="80" rows="7">[[!+fi.message]]</textarea>
+<br class="clearfix" />
+    <textarea name="message" id="dis-thread-message" cols="80" rows="7">[[!+fi.message]]</textarea><br class="clearfix" />
 
     [[+attachment_fields]]
 
     <br class="clearfix" />
 
 
-    [[+locked_cb]]
-    [[+sticky_cb]]
-
-    <label class="dis-cb"><input type="checkbox" name="notify" value="1" [[!+fi.notify:FormItIsChecked=`1`]] />[[%discuss.notify_of_replies]]</label><br class="clear" />
 
     <div class="dis-form-buttons">
-        <input type="submit" name="dis-post-new" value="[[%discuss.thread_post_new]]" />
-        <input type="button" class="dis-new-thread-preview" id="dis-new-thread-preview-btn" value="[[%discuss.preview]]" />
+    [[+locked_cb]]
+    [[+sticky_cb]]
+    <label class="dis-cb"><input type="checkbox" name="notify" value="1" [[!+fi.notify:FormItIsChecked=`1`]] />[[%discuss.notify_of_replies]]</label><br class="clearfix" />
+        <input type="submit" name="dis-post-reply" value="[[%discuss.thread_post_new]]" />
         <input type="button" value="[[%discuss.cancel]]" onclick="location.href='[[~[[*id]]]]board/?board=[[+id]]';" />
     </div>
 </form>
+<br class="clearfix" />
 
-<div id="dis-new-thread-preview"></div>
 
 [[+discuss.error_panel]]
 
@@ -63,20 +71,10 @@
 
 
 
-				<div id="Panel">
-					<div class="PanelBox">
-						
-						<div class="Box GuestBox">
-						   <h4>Don't Be That Guy</h4>
-							<p>Be nice, respectful and patient. Inflamatory or inappropriate posts will get your post nuked and flood your life with bans and bad karma.</p>
-						</div>
-						
-						<div class="Box GuestBox">
-						   <h4>Help Us Help You</h4>
-							<p>Use a title that gives insight into your post and limit your posts to 1. Remember, this is an open source project and folks aren't paid to help you here. If you're experiencing problems, please supply adequate technical details.</p>
-						</div>
-						
+<aside>
+				<hr class="line" />
+    <div class="PanelBox">
+	[[!$post-sidebar?disection=`new-message`]]
 
-						
-						
-					</div>
+
+</aside>

@@ -5,17 +5,13 @@
    &successMessage=``
 ]]
 
-<div class="dis-profile left">
+<div class="dis-profile">
 
 
 
-<form action="[[~[[*id]]]]user/merge" method="post" class="dis-form" id="dis-user-merge-form" style="border: 0;">
-	<ul class="DataList CategoryList CategoryListWithHeadings">
-	
-		<li class="Item CategoryHeading Depth1">
-	    <div class="ItemContent Category">[[%discuss.account_merge? &namespace=`discuss` &topic=`user`]]: [[+name]]</div>
-	    </li>
-	</ul>
+<form action="[[~[[*id]]]]user/merge" method="post" class="dis-form" id="dis-user-merge-form">
+
+	<h1>[[%discuss.account_merge? &namespace=`discuss` &topic=`user`]]: [[+name]]</h1>
 
     <p>[[%discuss.account_merge_msg]]</p>
 
@@ -23,12 +19,12 @@
 
     <label for="dis-username">[[%discuss.username]]:
         <span class="error">[[+fi.error.username]]</span>
-    </label>
+    </label><br class="clearfix" />
     <input type="text" name="username" id="dis-username" value="[[+fi.username]]" />
-
+<br class="clearfix" />
     <label for="dis-password">[[%discuss.password]]:
         <span class="error">[[+fi.error.password]]</span>
-    </label>
+    </label><br class="clearfix" />
     <input type="password" name="password" id="dis-password" value="[[+fi.password]]" />
 
     <br class="clearfix" />
@@ -48,22 +44,23 @@
 	[[+bottom]]
 
 
-				<div id="Panel">
-					<div class="PanelBox">
-					
-						<div class="Box GuestBox">
-						   <h4>[[+name]]'s Profile</h4>
-							<ul class="PanelInfo PanelCategories">
+<aside>
+				<hr class="line" />
+    <div class="PanelBox">
 
-								<li class="Heading"><img src="[[+avatarUrl]]" alt="[[+username]]" />
-							<br /><span class="small">[[+title]]</span></li>
-							</ul>
-							
-						</div>
-						
-						<div class="Box BoxCategories">
-							[[+usermenu]]
+        <div class="Box">
+           <h4>[[+username]]'s Profile</h4>
+            <ul class="panel_info">
 
+                <li class="Heading"><img src="[[+avatarUrl]]" alt="[[+username]]" />
+            <br /><span class="small">[[+title]]</span></li>
+            </ul>
 
-						</div>
-					</div>
+        </div>
+        <div class="Box">
+            [[+usermenu]]
+        </div>
+
+		[[$user-sidebar]]
+
+</aside>

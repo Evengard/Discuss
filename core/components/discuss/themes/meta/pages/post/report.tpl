@@ -1,9 +1,6 @@
-[[+trail]]
-
-<br />
 <form action="[[~[[*id]]]]post/report?post=[[+id]]" method="post" class="dis-form" id="dis-report-thread-form">
 
-    <h2>[[%discuss.report_to_mod? &namespace=`discuss` &topic=`post`]]</h2>
+    <h1>[[%discuss.report_to_mod? &namespace=`discuss` &topic=`post`]]</h1>
 
     <input type="hidden" name="thread" value="[[+id]]" />
 
@@ -25,3 +22,19 @@
     <input type="button" class="dis-action-btn" value="[[%discuss.cancel]]" onclick="location.href='[[+url]]';" />
     </div>
 </form>
+
+
+</div><!-- Close Content From Wrapper -->
+
+[[+bottom]]
+
+
+
+<aside>
+				<hr class="line" />
+    <div class="PanelBox">
+	[[!$post-sidebar?disection=`new-message`]]
+
+
+						
+</aside>

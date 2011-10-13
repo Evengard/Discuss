@@ -1,29 +1,24 @@
 
-<div class="dis-profile left">
+<div class="dis-profile">
 
-	<ul class="DataList CategoryList CategoryListWithHeadings">
+	<h1>Ignore Boards</h1>
+
+	<form action="[[~[[*id]]]]user/ignoreboards?user=[[+id]]" method="post" class="dis-form">
+
+		<ul>
+			[[+boards]]
+		</ul>
+			
+		<label class="dis-cb"><input type="checkbox" class="dis-ignore-all" /><strong>Ignore All</strong></label>
+
+		<br class="clearfix" />
+
+	    <div class="dis-form-buttons">
+	    	<input type="submit" value="Update" />
+	    </div>
+
+	</form>
 	
-		<li class="Item CategoryHeading Depth1">
-	    <div class="ItemContent Category">Ignore Boards</div>
-	    </li>
-	</ul>
-		
-<form action="[[~[[*id]]]]user/ignoreboards?user=[[+id]]" method="post">
-
-							<ul class="profile">
-   								
-     					       [[+boards]]
-
-							</ul>
-
-<br class="clearfix" />
-    <div class="dis-form-buttons">
-    Ignore All: <input type="checkbox" class="dis-ignore-all" />
-    <input type="submit" class="dis-action-btn" value="Update" />
-    </div>
-
-</form>
-
 </div>
 	
 
@@ -31,22 +26,24 @@
 	[[+bottom]]
 
 
-				<div id="Panel">
-					<div class="PanelBox">
-					
-						<div class="Box GuestBox">
-						   <h4>[[+name]]'s Profile</h4>
-							<ul class="PanelInfo PanelCategories">
 
-								<li class="Heading"><img src="[[+avatarUrl]]" alt="[[+username]]" />
-							<br /><span class="small">[[+title]]</span></li>
-							</ul>
-							
-						</div>
-						
-						<div class="Box BoxCategories">
-							[[+usermenu]]
+<aside>
+	<hr class="line" />
+    	<div class="PanelBox">
 
-
-						</div>
-					</div>
+        	<div class="Box">
+           		<h4>[[+username]]'s Profile</h4>
+            	<ul class="panel_info">
+					<li class="Heading"><img src="[[+avatarUrl]]" alt="[[+username]]" />
+            			<br />
+            			<span class="small">[[+title]]</span>
+            		</li>
+				</ul>
+			</div>
+			
+	        <div class="Box">
+	            [[+usermenu]]
+	        </div>
+	        
+		</div>
+</aside>

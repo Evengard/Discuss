@@ -1,6 +1,6 @@
-<div class="dis-post">
+<div>
     <div class="dis-post-header">
-
+        <div class="dis-post-actions"></div>
         <h3 class="dis-post-title" post="[[+id]]">[[+title]]</h3>
         <span class="dis-post-author">- by [[+username]] on [[+createdon:strtotime:date=`%b %d, %Y, %H:%M %p`]]</span>
     </div>

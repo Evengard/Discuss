@@ -1,23 +1,16 @@
 
-
-[[<h4 class="right">[[%discuss.participants]]: [[+participants_usernames]]</h4>]]
-
 <div class="dis-threads">
+	    [[+pagination]]
 
-	<ul class="DataList CategoryList CategoryListWithHeadings">
-	
-		<li class="Item CategoryHeading Depth1">
-	    <div class="ItemContent Category">[[%discuss.message? &namespace=`discuss` &topic=`post`]]: [[+title]]</div>
-	    </li>
+
+	<ul class="dis-list">
+		<li><h1>[[%discuss.message? &namespace=`discuss` &topic=`post`]]: [[+title]]</h1></li>
+		[[+posts]]
 	</ul>
 
+	    [[+pagination]]
 
-	<ol class="dis-board-thread">
-		[[+posts]]
-	</ol>
-
-						   <div class="dis-pagination"><ul>[[+pagination]]</ul></div>
-
+    [[+quick_reply_form]]
 </div>
 
 
@@ -31,13 +24,20 @@
 			</div><!-- Close Content From Wrapper -->
 [[+bottom]]
 
-				<div id="Panel">
-					<div class="PanelBox">
-					
-						<div class="Box GuestBox">
-							<h4>Actions & Info</h4>
-							<p class="actions">[[+actionbuttons]]</p>
-							<p>[[+views]] total views.</p>
-						</div>
+<aside>
+				<hr class="line" />
+    <div class="PanelBox">
+        [[!+discuss.user.id:notempty=`<div class="Box">
+            <h4>Actions</h4>
+			<p>[[+actionbuttons]]</p>
+			<p>[[+moderators]]</p>
+	    </div>`]]
 
-					</div>
+		[[!$post-sidebar?disection=`dis-support-opt`]]
+		
+			<div class="Box">
+			<h4>Information</h4>
+			<p>Posted in this thread:<br />[[+participants_usernames]]</p>
+			<p>[[+readers]]</p>
+			</div>
+</aside>

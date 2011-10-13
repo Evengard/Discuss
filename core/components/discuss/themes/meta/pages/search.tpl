@@ -1,43 +1,56 @@
 
 
 <form class="dis-form" action="[[~[[*id]]]]search/" method="get">
-    <h2>[[%discuss.search? &namespace=`discuss` &topic=`web`]]</h2>
-    
-    <label for="dis-search">[[%discuss.search]]:</label>
-    <input type="text" id="dis-search" name="s" value="[[+search]]" />
+	<h1>[[%discuss.search? &namespace=`discuss` &topic=`web`]]</h1>
+	
+    <label for="dis-search">[[%discuss.search]]:</label><br class="clearfix" />
+    <input type="text" id="dis-search" name="s" value="[[+search]]" /><br class="clearfix" />
 
     <label for="dis-search-board">[[%discuss.board]]:
         <span class="error">[[+error.board]]</span>
-    </label>
-    <select name="board" id="dis-search-board">[[+boards]]</select>
+    </label><br class="clearfix" />
+    <select name="board" id="dis-search-board">[[+boards]]</select><br class="clearfix" />
 
-    <label for="dis-author">[[%discuss.author]]:</label>
+    <label for="dis-author">[[%discuss.author]]:</label><br class="clearfix" />
     <input type="text" id="dis-author" name="user" value="[[+user]]" />
 
-    <br class="clear" />
+    <br class="clearfix" />
     
     <div class="dis-form-buttons">
     <input type="submit" class="dis-action-btn" value="[[%discuss.search]]" />
-    </div>
+    </div><br class="clearfix" />
 </form>
 
 <hr />
+	    [[+pagination]]
 
-<div class="dis-pagination"><span>[[%discuss.pages? &namespace=`discuss` &topic=`web`]]:</span> <ul>[[+pagination]]</ul></div>
 
-[[+results:notempty=`<h2>Displaying [[+start]]-[[+end]] of [[+total]] Results</h2>`]]
-<table class="dis-search-results dis-table">
-<thead>
-<tr>
-    <th style="width: 18%;">[[%discuss.post]]</th>
-    <th style="width: 32%;">[[%discuss.excerpt]]</th>
-    <th style="width: 10%;">[[%discuss.author]]</th>
-    <th style="width: 10%;">[[%discuss.posted_on]]</th>
-</tr>
-</thead>
-<tbody>
+<div class="dis-threads">
+	
+
+<ul class="dis-list search-results">
+<li>[[+results:notempty=`<h1>Displaying [[+start]]-[[+end]] of [[+total]] Results</h1>`]]</li>
 [[+results]]
-</tbody>
-</table>
+</ul>
+</div>
 
-<div class="dis-pagination"><span>[[%discuss.pages]]:</span> <ul>[[+pagination]]</ul></div>
+	    [[+pagination]]
+
+<br class="clearfix" />
+
+	
+</div><!-- Close Content From Wrapper -->
+
+[[+bottom]]
+
+
+
+<aside>
+				<hr class="line" />
+    <div class="PanelBox">
+
+
+		[[!$post-sidebar?disection=`dis-support-opt`]]
+
+
+</aside>

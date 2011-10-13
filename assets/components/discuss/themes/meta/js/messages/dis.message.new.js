@@ -6,8 +6,11 @@ DIS.NewMessage = function() {
     
     return {
         init: function() {
-            $('.dis-message-preview').click(this.preview);
-            $('.dis-message-add-attachment').click(this.addAttachment);
+            $('.dis-preview').click(this.preview);
+            $('.dis-message-write').click(this.message);
+            $("#dis-message-preview").delegate(".dis-message-cancel", "click", this.message);
+            $('.dis-cancel-preview').click(this.cancel);
+            $('.dis-add-attachment').click(this.addAttachment);
             
         }
 
@@ -23,6 +26,23 @@ DIS.NewMessage = function() {
             var a = $.ajax(a);
             $('#dis-message-preview').hide().html(a.responseText).fadeIn();
             if (SyntaxHighlighter) { SyntaxHighlighter.highlight(); }
+
+            $('.dis-message-write').removeClass('selected');
+            $('.dis-preview').addClass('selected');
+            $('#overlay-20').fadeIn();
+            return false;
+        }
+
+        ,message: function() {
+            $('.dis-preview').removeClass('selected');
+            $('.dis-message-write').addClass('selected');
+            $('#dis-message-preview').fadeOut();
+            $('#overlay-20').fadeOut();
+            return false;        
+        }
+
+        ,cancel: function() {
+            $('#dis-message-preview').slideUp('slow');
         }
         
         ,addAttachment: function() {

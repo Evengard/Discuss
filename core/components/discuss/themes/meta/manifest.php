@@ -34,13 +34,15 @@ $manifest = array(
         ),
         'js' => array(
             'header' => array(
-                'jquery-1.3.2.min.js',
+                'jquery-1.6.1.min.js',
+                'jquery.scrollTo-min.js',
                 'discuss.js',
                 'sh/shCore.js',
                 'sh/shAutoloader.js',
                 'sh/shDiscuss.js',
+                'dis.sticky.js'
             ),
-            'inline' => 'DIS.url = "'.$this->discuss->request->makeUrl().'";DIS.shJsUrl = "'.$this->discuss->config['jsUrl'].'sh/";',
+            'inline' => 'DIS.url = "'.$this->discuss->request->makeUrl().'";DIS.shJsUrl = "'.$this->discuss->config['jsUrl'].'sh/";DIS.config.connector = "'.$this->discuss->config['connectorUrl'].'"',
         ),
     ),
     'print' => array(
@@ -59,12 +61,13 @@ $manifest = array(
         'options' => array(
             'showBoards' => true,
             'showBreadcrumbs' => true,
-            'showRecentPosts' => true,
+            'showRecentPosts' => false,
             'showStatistics' => true,
             'showLoginForm' => false,
             'bypassUnreadCheck' => true,
-            'checkUnread' => false,
+            'checkUnread' => true,
             'showLogoutActionButton' => false,
+            'hideIndexBreadcrumbs' => true,
         ),
     ),
     'board' => array(
@@ -79,12 +82,24 @@ $manifest = array(
             'showBreadcrumbs' => true,
             'showReaders' => true,
             'showModerators' => true,
+            'showPaginationIfOnePage' => false,
+        ),
+    ),
+    'board.xml' => array(
+        'options' => array(
+            'showSubBoards' => false,
+            'showPosts' => true,
+            'showBreadcrumbs' => false,
+            'showReaders' => false,
+            'showModerators' => false,
+            'useLastPost' => false,
         ),
     ),
     'thread' => array(
         'js' => array(
             'header' => array(
                 'dis.thread.js',
+                'dis.post.buttons.js',
             )
         ),
         'options' => array(
@@ -92,10 +107,12 @@ $manifest = array(
             'showBreadcrumbs' => true,
             'showViewing' => true,
             'showSubscribeOption' => true,
-            'showPrintOption' => false,
+            'showPrintOption' => true,
             'showStickOption' => true,
             'showLockOption' => true,
             'showMarkAsSpamOption' => true,
+            'showTitleInBreadcrumbs' => false,
+            'showPaginationIfOnePage' => false,
         ),
     ),
     'thread/new' => array(
@@ -113,6 +130,9 @@ $manifest = array(
                 'dis.post.buttons.js',
             ),
         ),
+        'options' => array(
+            'showTitleInBreadcrumbs' => true,
+        ),
     ),
     'thread/modify' => array(
         'js' => array(
@@ -121,12 +141,58 @@ $manifest = array(
                 'dis.post.buttons.js',
             ),
         ),
+        'options' => array(
+            'showTitleInBreadcrumbs' => true,
+        ),
+    ),
+    'thread/move' => array(
+        'js' => array(
+            'header' => array(
+                'dis.thread.js',
+            )
+        ),
+        'options' => array(
+            'showTitleInBreadcrumbs' => true,
+        ),
+    ),
+    'thread/spam' => array(
+        'js' => array(
+            'header' => array(
+                'dis.thread.js',
+            )
+        ),
+        'options' => array(
+            'showTitleInBreadcrumbs' => true,
+        ),
     ),
     'thread/remove' => array(
         'js' => array(
             'header' => array(
                 'dis.thread.js',
             )
+        ),
+        'options' => array(
+            'showTitleInBreadcrumbs' => true,
+        ),
+    ),
+    'post/report' => array(
+        'js' => array(
+            'header' => array(
+                'dis.thread.js',
+            )
+        ),
+        'options' => array(
+            'showTitleInBreadcrumbs' => true,
+        ),
+    ),
+    'post/spam' => array(
+        'js' => array(
+            'header' => array(
+                'dis.thread.js',
+            )
+        ),
+        'options' => array(
+            'showTitleInBreadcrumbs' => true,
         ),
     ),
     'search' => array(
@@ -160,6 +226,16 @@ $manifest = array(
             )
         ),
     ),
+    'messages/index' => array(
+        'options' => array(
+            'showSubBoards' => true,
+            'showPosts' => true,
+            'showBreadcrumbs' => true,
+            'showReaders' => true,
+            'showModerators' => true,
+            'showPaginationIfOnePage' => false,
+        ),
+    ),
     'messages/new' => array(
         'js' => array(
             'header' => array(
@@ -182,6 +258,44 @@ $manifest = array(
                 'messages/dis.message.modify.js',
                 'dis.post.buttons.js',
             ),
+        ),
+    ),
+    'messages/view' => array(
+        'js' => array(
+            'header' => array(
+                'dis.thread.js',
+                'dis.post.buttons.js',
+            )
+        ),
+        'options' => array(
+            'showPosts' => true,
+            'showBreadcrumbs' => true,
+            'showViewing' => true,
+            'showSubscribeOption' => false,
+            'showPrintOption' => false,
+            'showStickOption' => true,
+            'showLockOption' => true,
+            'showMarkAsSpamOption' => true,
+            'showTitleInBreadcrumbs' => false,
+            'showPaginationIfOnePage' => false,
+        ),
+    ),
+    'thread/recent' => array(
+        'options' => array(
+            'showTitleInBreadcrumbs' => true,
+            'showPaginationIfOnePage' => false,
+        ),
+    ),
+    'thread/unread' => array(
+        'options' => array(
+            'showTitleInBreadcrumbs' => true,
+            'showPaginationIfOnePage' => false,
+        ),
+    ),
+    'thread/unread_last_visit' => array(
+        'options' => array(
+            'showTitleInBreadcrumbs' => true,
+            'showPaginationIfOnePage' => false,
         ),
     ),
 );

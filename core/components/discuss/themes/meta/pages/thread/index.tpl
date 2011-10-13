@@ -1,58 +1,51 @@
 [[+top]]
 
 [[+aboveThread]]
+	    [[+pagination]]
 
-	<ul class="DataList CategoryList CategoryListWithHeadings">
+<div>
+	<ul class="dis-list">
+		<li><h1 class="Category [[+locked:is=`1`:then=`locked`:else=`unlocked`]]" post="[[+id]]"><a href="[[+url]]">[[+title]]<span class="idx">#[[+idx]]</span></a></h1></li>
+        [[+posts]]
+    </ul>
+	    [[+pagination]]
 	
-		<li class="Item CategoryHeading Depth1">
-	    <div class="ItemContent Category">[[+title]]</div>
-	    </li>
-	</ul>
+    [[+quick_reply_form]]
 
-	<div>
-		<ol class="dis-board-thread">
-			[[+posts]]
-			<li>[[+pagination:notempty=`<div class="dis-pagination">[[<span>[[%discuss.pages? &namespace=`discuss` &topic=`web`]]:</span> ]]<ul>[[+pagination]]</ul></div>`]]</li>
-		</ol>
-	</div>
+    <br class="clearfix" />
+</div>
 
-
-	<div class="dis-thread-actions">[[+threadactionbuttons]]</div>
-
-	
 	[[+belowThread]]
 	
 	<br class="clearfix" />
 	[[+discuss.error_panel]]
 	
-				</div><!-- Close Content From Wrapper -->
+</div><!-- Close Content From Wrapper -->
 
 [[+bottom]]
 
 
-
-				<div id="Panel">
-					<div class="PanelBox">
-
-						<div class="Box GuestBox">
-						   <h4>Actions &amp; Info</h4>
-							<p class="actions">[[+actionbuttons]]</p>
-
-							<p>[[+readers]]</p>
-							<p>[[+moderators]]</p>
-						</div>
-						
-						<div class="Box GuestBox">
-						   <h4>Don't Be That Guy</h4>
-							<p>Be nice, respectful and patient. Inflamatory or inappropriate posts will get your post nuked and flood your life with bans and bad karma.</p>
-						</div>
-						
-						<div class="Box GuestBox">
-						   <h4>Help Us Help You</h4>
-							<p>Use a title that gives insight into your post and limit your posts to 1. Remember, this is an open source project and folks aren't paid to help you here. If you're experiencing problems, please supply adequate technical details.</p>
-						</div>
-						
-
-
-						
-					</div>
+<aside>
+    <hr class="line" />
+    <div class="PanelBox">
+        [[!+discuss.user.id:notempty=`<div class="Box">
+            <h4>Actions</h4>
+			<p>[[+actionbuttons]]</p>
+			<p>Subscribe: 
+			[[+subscribeUrl:notempty=`<a href="[[+subscribeUrl]]">By email</a>`]]
+			[[+unsubscribeUrl:notempty=`<a href="[[+unsubscribeUrl]]">Stop emails</a>`]]</p>
+			<p>[[+moderators]]</p>
+	    </div>`]]
+        [[!+discuss.user.id:is=``:then=`<div class="Box">
+		    <h4>Actions</h4>
+			<p><a href="[[~[[*id]]]]login" class="Button">Login to Post</a></p>
+		</div>`]]
+		
+		[[!$post-sidebar?disection=`dis-support-opt`]]
+		
+			<div class="Box">
+			<h4>Information</h4>
+			<p>Posted in this thread:<br />[[+participants_usernames]]</p>
+			<p>[[+readers]]</p>
+			</div>
+</aside>

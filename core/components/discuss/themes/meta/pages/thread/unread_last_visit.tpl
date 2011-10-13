@@ -1,45 +1,33 @@
+	    [[+pagination]]
 
 <div class="dis-threads">
-	<ul class="DataList CategoryList CategoryListWithHeadings">
+
 	
-		<li class="Item CategoryHeading Depth1">
-	    <div class="ItemContent Category">[[%discuss.last_post]]</div>
-	    </li>
+
+	<ul class="dis-list">
+		<li><h1>Unread Posts Since Last Visit</h1></li>
+		[[+threads]]
 	</ul>
 
-	<ol class="dis-board-thread">
-		[[+threads]]
-	</ol>
-
-						   <div class="dis-pagination"><ul>[[+pagination]]</ul></div>
+	    [[+pagination]]
 </div>
-[[+bottom]]
 				</div><!-- Close Content From Wrapper -->
+[[+bottom]]
 
-
-				<div id="Panel">
-					<div class="PanelBox">
-
-						<div class="Box GuestBox">
-						   <h4>Actions &amp; Info</h4>
-							<p>[[+actionbuttons]]</p>
-
-							<p>[[+readers]]</p>
+<aside>
+				<hr class="line" />
+    <div class="PanelBox">
+[[!+discuss.user.id:notempty=`<div class="Box">
+				           <h4>Actions</h4>
+				            <p>[[+actionbuttons]]</p>
 							<p>[[+moderators]]</p>
-						</div>
-						
-						<div class="Box GuestBox">
-						   <h4>Don't Be That Guy</h4>
-							<p>Be nice, respectful and patient. Inflamatory or inappropriate posts will get your post nuked and flood your life with bans and bad karma.</p>
-						</div>
-						
-						<div class="Box GuestBox">
-						   <h4>Help Us Help You</h4>
-							<p>Use a title that gives insight into your post and limit your posts to 1. Remember, this is an open source project and folks aren't paid to help you here. If you're experiencing problems, please supply adequate technical details.</p>
-						</div>
-						
-
-
-						
-					</div>
-
+				        </div>`]]
+				        [[!+discuss.user.id:is=``:then=`<div class="Box">
+				           <h4>Actions</h4>
+				            <p><a href="[[~[[*id]]]]login" class="Button">Login to Post</a></p>
+				        </div>`]]
+			<div class="Box">
+			<h4>Information</h4>
+			<p>[[+readers]]</p>
+			</div>
+</aside>

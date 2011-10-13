@@ -6,8 +6,11 @@ DIS.NewThread = function() {
     
     return {
         init: function() {
-            $('.dis-new-thread-preview').click(this.preview);
-            $('.dis-new-thread-add-attachment').click(this.addAttachment);
+            $('.dis-preview').click(this.preview);
+            $('.dis-message-write').click(this.message);
+			$("#dis-message-preview").delegate(".dis-message-cancel", "click", this.message);
+            $('.dis-cancel-preview').click(this.cancel);
+            $('.dis-add-attachment').click(this.addAttachment);
             
         }
 
@@ -21,8 +24,25 @@ DIS.NewThread = function() {
                 ,data: p
             });
             var a = $.ajax(a);
-            $('#dis-new-thread-preview').hide().html(a.responseText).fadeIn();
+            $('#dis-message-preview').hide().html(a.responseText).fadeIn(80);
             if (SyntaxHighlighter) { SyntaxHighlighter.highlight(); }
+
+            $('.dis-message-write').removeClass('selected');
+            $('.dis-preview').addClass('selected');
+            $('#overlay-20').fadeIn();
+            return false;
+        }
+
+        ,message: function() {
+            $('.dis-preview').removeClass('selected');
+            $('.dis-message-write').addClass('selected');
+            $('#dis-message-preview').fadeOut(80);
+            $('#overlay-20').fadeOut();
+            return false;        
+        }
+
+        ,cancel: function() {
+            $('#dis-message-preview').slideUp('slow');
         }
         
         ,addAttachment: function() {

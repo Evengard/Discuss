@@ -6,13 +6,54 @@ $(function() {
 
 DIS.Thread = function() {
     var postCount = DIS.config.postCount;
+    var attachments = 1;
     
     return {
         init: function() {
+            $('.dis-preview').click(this.preview);
+            $('.dis-message-write').click(this.message);
+            $("#dis-message-preview").delegate(".dis-message-cancel", "click", this.message);
             $('.dis-post-title').click(this.togglePost);
             $('.dis-post-author').click(this.toggleAuthor);
             $('.dis-post-remove').click(this.removePost);
+            $('.quick-reply').click(this.quickReply);
+            $('.dis-add-attachment').click(this.addAttachment);
         }
+        
+        ,preview: function() {
+            var f = $('#dis-quick-reply-form');
+            var p = f.serialize()+'&action=thread/preview';
+
+            var a = $.extend({},DIS.baseAjax,{
+                url: DIS.url
+                ,async: false
+                ,data: p
+                ,type: 'POST'
+            });
+            var a = $.ajax(a);
+            $('#dis-message-preview').hide().html(a.responseText).fadeIn(80);
+            if (SyntaxHighlighter) { SyntaxHighlighter.highlight(); }
+            
+            $('.dis-message-write').removeClass('selected');
+            $('.dis-preview').addClass('selected');
+            $('#overlay-20').fadeIn();
+            return false;
+        }
+        
+        ,message: function() {
+            $('.dis-preview').removeClass('selected');
+            $('.dis-message-write').addClass('selected');
+            $('#dis-message-preview').fadeOut(80);
+            $('#overlay-20').fadeOut();
+            return false;        
+        }
+
+		,quickReply: function() {
+			$.scrollTo($('.preview_toggle'),500);
+			$('#dis-thread-message').focus();
+			return false;
+		}
+
         ,pollPosts: function() {
              var a = $.extend({},DIS.baseAjax,{
                 url: DIS.config.connector
@@ -35,7 +76,7 @@ DIS.Thread = function() {
             });
             $.ajax(a);
         }
-        
+
         ,displayRefreshMessage: function(d) {
             /* TODO: move html to a chunk */
             $('.dis-poll-refresh').html('There have been '+d+' new posts since you last reloaded. Please ' +
@@ -126,36 +167,18 @@ DIS.Thread = function() {
         ,removePost: function() {
             var p = $.q($(this).attr('href'));
             p.id = $(this).closest('.dis-post').attr('id');
-            p.id = p.id.replace(/dis-post-/,'');      
-                    
-            var s = confirm('Are you sure you want to remove this post?');
-            if (s) {
-                var a = $.extend({},DIS.baseAjax,{
-                    url: DIS.config.connector
-                    ,data: {
-                        action: 'web/post/remove'
-                        ,post: p.id
-                    }
-                    ,success: function(r) {
-                        if (r.success == false) { DIS._showError(r.message); return false; }
-                        
-                        var ol = $('#dis-board-post-'+p.id).parent('ol');
-                        var lis = ol.children('li');
-                        if (lis.length == 1) {
-                            ol.fadeOut().remove();
-                        } else {
-                            $('#dis-board-post-'+p.id).fadeOut().remove();
-                        }
-                        var ct = parseInt($('.dis-author-post-count').html());
-                        $('.dis-author-post-count').html((ct-1));
-                        if (p['parent'] == 0) {
-                            location.href = p.url;
-                        }
-                        return true;
-                    }
-                });
-                $.ajax(a);
-            }
+            p.id = p.id.replace(/dis-post-/,'');
+            return confirm('Are you sure you want to remove this post?');
+        }
+
+        ,addAttachment: function() {
+            var d = $('#dis-attachments');
+            var i = attachments+1;
+            if (i > DIS.config.attachments_max_per_post) return false;
+            var tpl = '<label><span>&nbsp;</span></label><input type="file" name="attachment'+i+'" /><br class="clear" />';
+
+            d.append(tpl);
+            attachments = attachments+1;
             return false;
         }
     };
