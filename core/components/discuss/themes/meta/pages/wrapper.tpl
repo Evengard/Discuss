@@ -23,7 +23,7 @@
 		<nav id="global">
 			[[+discuss.user.id:is=``:then=`<a href="[[~[[*id]]]]login">Login</a> | <a href="[[~[[*id]]]]register">Register</a>`]]
 			[[+discuss.user.id:notempty=`Welcome, <a href="[[~[[*id]]]]user/?user=[[+discuss.user.id]]">[[+modx.user.username]]</a> | <a href="[[~[[*id]]]]logout">Logout</a>`]]
-			 | <a href="http://www.metawatch.com" title="Metawatch.com">Metawatch.com</a>
+			 | <a href="http://www.metawatch.org" title="Metawatch.org">Metawatch.org</a>
 		</nav>
 		<nav id="logo">
 			<a title="Metawatch" href="/forums/">Metawatch</a>
@@ -31,7 +31,7 @@
 		</nav>
 
           <nav id="logo_search">
-            <a href="[[~[[*id]]]]" class="ir" id="logo" title="Metawatch">Metawatch.com</a>
+            <a href="[[~[[*id]]]]" class="ir" id="logo" title="Metawatch">Metawatch.org</a>
             <div id="search">
 		                <form action="[[~[[*id]]]]search" method="get" accept-charset="utf-8">
 							<label for="search_form_input" class="hidden">Search</label>
@@ -53,7 +53,7 @@
 					[[+discuss.user.id:is=``:then=`<li class="first level1">
 						<a href="[[~[[*id]]]]register" class="first level1"><span class="Title">Register</span>Sign Up with the Metawatch Community</a></li>
 				
-            		<li class="level1"><a href="[[~[[*id]]]]login" class="first level1"><span class="Title">Login</span></a></li>`]]
+            		<li class="level1"><a href="[[~[[*id]]]]login" class="first level1"><span class="Title">Login</span>&nbsp;</a></li>`]]
 				
 				
 					[[+discuss.user.id:notempty=`<li class="first level1 parent">

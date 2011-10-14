@@ -35,7 +35,7 @@
 						
 						<div class="Box">
 						   <h4>Subscribe to Feed</h4>
-							<p><a class="rss_feed" href="thread/recent.xml">RSS Feed</a></p>
+							<p><a class="rss_feed" href="forums/thread/recent.xml">RSS Feed</a></p>
 							<p>[[+board]]</p>
 						</div>
 						
