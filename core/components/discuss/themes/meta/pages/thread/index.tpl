@@ -41,8 +41,6 @@
 			<p><a href="[[~[[*id]]]]login" class="Button">Login to Post</a></p>
 		</div>`]]
 		
-		[[!$post-sidebar?disection=`dis-support-opt`]]
-		
 			<div class="Box">
 			<h4>Information</h4>
 			<p>Posted in this thread:<br />[[+participants_usernames]]</p>

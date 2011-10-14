@@ -40,7 +40,6 @@
 			<p><a href="[[~[[*id]]]]login" class="Button">Login to Post</a></p>
 		</div>`]]
 
-		[[!$post-sidebar?disection=`dis-support-opt`]]
 
 
     </aside>

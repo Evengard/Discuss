@@ -32,8 +32,6 @@
 			<p>[[+actionbuttons]]</p>
 			<p>[[+moderators]]</p>
 	    </div>`]]
-
-		[[!$post-sidebar?disection=`dis-support-opt`]]
 		
 			<div class="Box">
 			<h4>Information</h4>
