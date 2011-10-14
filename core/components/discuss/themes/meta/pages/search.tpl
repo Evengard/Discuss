@@ -50,7 +50,9 @@
     <div class="PanelBox">
 
 
-		[[!$post-sidebar?disection=`dis-support-opt`]]
-
+						<div class="Box">
+						   <h4>Other Support Options</h4>
+							<p>To file a bug or make a feature request visit our <a href="http://www.bugs.metawatch.org" title="Bug Tracker">issue tracker</a>.</p>
+						</div>
 
 </aside>

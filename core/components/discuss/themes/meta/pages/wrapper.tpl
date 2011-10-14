@@ -51,9 +51,9 @@
 			<nav id="section">
 				<ul>
 					[[+discuss.user.id:is=``:then=`<li class="first level1">
-						<a href="[[~[[*id]]]]register" class="first level1"><span class="Title">Register</span>Sign Up with the MODX Community</a></li>
+						<a href="[[~[[*id]]]]register" class="first level1"><span class="Title">Register</span>Sign Up with the Metawatch Community</a></li>
 				
-            		<li class="level1"><a href="[[~[[*id]]]]login" class="first level1"><span class="Title">Login</span>Use Your MODX.com Account</a></li>`]]
+            		<li class="level1"><a href="[[~[[*id]]]]login" class="first level1"><span class="Title">Login</span></a></li>`]]
 				
 				
 					[[+discuss.user.id:notempty=`<li class="first level1 parent">
