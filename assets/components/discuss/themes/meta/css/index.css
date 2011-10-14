@@ -139,6 +139,11 @@ a:hover {
 
 .discuss { padding-top: 25px; }
 
+a.rss_feed {
+	display: block;
+	padding-left: 24px;
+	background: transparent url(../images/icon_rss.png) no-repeat 0 0;
+	}
 
 #frame {
  	margin: 0 auto;
@@ -156,7 +161,7 @@ a:hover {
 
 #Content {
     float: left;
-    width: 710px;
+    width: 728px;
 }
 
 
@@ -537,7 +542,7 @@ body#body-thread .dis-sticky-actions {
 /*  Side Panel  */
 aside {
 	position: relative;
-	width: 250px;
+	width: 231px;
 	float: right;
  	margin: 0 0;
  	padding: 0 0;

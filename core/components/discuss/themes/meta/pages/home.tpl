@@ -34,13 +34,14 @@
 
 						
 						<div class="Box">
-						   <h4>Other Support Options</h4>
-							<p>To file a bug or make a feature request <a href="http://bugs.modx.com">visit our issue tracker</a>, or you can also <a href="[[~10]]" title="MODX Direct Commercial Support">purchase commercial support</a>.</p>
+						   <h4>Subscribe to Feed</h4>
+							<p><a class="rss_feed" href="thread/recent.xml">RSS Feed</a></p>
+							<p>[[+board]]</p>
 						</div>
 						
 						<div class="Box">
-						   <h4>Love MODX?</h4>
-							<p>If you build sites with MODX or just love using it, why not <a href="http://modx.com/community/wall-of-fame/support-modx/">give back</a>?</p>
+						   <h4>Other Support Options</h4>
+							<p>To file a bug or make a feature request visit our <a href="http://www.bugs.metawatch.org" title="Bug Tracker">issue tracker</a>.</p>
 						</div>
 
 
