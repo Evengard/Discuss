@@ -1020,6 +1020,11 @@ span.idx {
  	behavior:url(pie.htc);
 	}
 
+.paging li a.active {
+	color: #097592;
+	background-color: #fff;
+	}
+	
 .paging li a:hover {
 	color: #ff0084;
 	}
