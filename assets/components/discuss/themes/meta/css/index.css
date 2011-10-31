@@ -1175,9 +1175,12 @@ ul.dis-attachments {
 
 
 .dis-ul {
-    margin-top:0;
-    margin-bottom:0;
+    margin: 10px 10px 10px 15px;
 }
+
+.dis-ul li {
+	list-style-type: disc;
+	}
 
 h4.participants {
 	border: none;
