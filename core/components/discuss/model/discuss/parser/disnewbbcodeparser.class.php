@@ -537,6 +537,7 @@ class disNewBBCodeParser extends disParser {
     public function cleanAndParse ($message) {
         /* leave only \n linebreaks */
 	    $message = strtr($message, array("\r" => ''));
+        $message = str_replace(array('<br>','<br />','<br/>'),"\n",$message);
 
 	    /* convert from smf imported tags, entities */
         $message = str_replace('&nbsp;',' ',$message);
