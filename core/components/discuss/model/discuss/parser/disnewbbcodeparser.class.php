@@ -293,7 +293,7 @@ class disNewBBCodeParser extends disParser {
     public static function parseComplexEmailCallback($matches) {
         if (empty($matches[1])) return '';
         //$message = str_replace(array('<br>','<br />','<br/>'),'',$matches[1]);
-        $messages = $matches[1];
+        $message = $matches[1];
         if (empty($matches[2])) $matches[2] = $matches[1];
         return self::encodeEmail($message,$matches[2]);
     }
@@ -397,7 +397,7 @@ class disNewBBCodeParser extends disParser {
      */
     public static function stripBRTags($str) {
         return $str;
-        return str_replace(array('<br>','<br />','<br/>'),'',$str);
+        //return str_replace(array('<br>','<br />','<br/>'),'',$str);
     }
 
     /**

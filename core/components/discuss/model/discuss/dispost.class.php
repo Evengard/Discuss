@@ -610,7 +610,7 @@ class disPost extends xPDOSimpleObject {
             $message = $rs;
         }
 
-        $message = $this->stripBBCode($message);
+        //$message = $this->stripBBCode($message);
         return $message;
     }
 
@@ -768,6 +768,7 @@ class disPost extends xPDOSimpleObject {
      * @return string The converted content
      */
     public function br2nl($str) {
+        return $str;
         return str_replace(array('<br>','<br />','<br/>'),"\n",$str);
     }
 
