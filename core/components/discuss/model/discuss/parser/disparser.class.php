@@ -71,6 +71,7 @@ abstract class disParser {
      * @return string
      */
     public function br2nl($str) {
+        return $str;
         return str_replace(array('<br>','<br />','<br/>'),"\n",$str);
     }
 

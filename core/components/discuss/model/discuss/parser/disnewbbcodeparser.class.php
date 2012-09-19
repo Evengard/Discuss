@@ -40,7 +40,7 @@ class disNewBBCodeParser extends disParser {
         $message = $this->cleanAndParse($message);
 
         /* auto-add br tags to linebreaks for pretty formatting */
-        $message = $this->_nl2br2($message);
+        //$message = $this->_nl2br2($message);
 
         /* Parse code blocks separately */
         $message = $this->parseSandboxed($message);
@@ -254,7 +254,8 @@ class disNewBBCodeParser extends disParser {
      * @return string
      */
     public static function parseCodeCallback($matches) {
-        $code = self::stripBRTags($matches[1]);
+        //$code = self::stripBRTags($matches[1]);
+        $code = $matches[1];
         return '<div class="dis-code"><pre class="brush: php; toolbar: false">'.$code.'</pre></div>';
     }
     /**
@@ -267,7 +268,8 @@ class disNewBBCodeParser extends disParser {
         $type = !empty($matches[1]) ? $matches[1] : 'php';
         $availableTypes = array('applescript','actionscript3','as3','bash','shell','coldfusion','cf','cpp','c','c#','c-sharp','csharp','css','delphi','pascal','diff','patch','pas','erl','erlang','groovy','java','jfx','javafx','js','jscript','javascript','perl','pl','php','text','plain','py','python','ruby','rails','ror','rb','sass','scss','scala','sql','vb','vbnet','xml','xhtml','xslt','html');
         if (!in_array($type,$availableTypes)) $type = 'php';
-        $code = self::stripBRTags($matches[2]);
+        //$code = self::stripBRTags($matches[2]);
+        $code = $matches[2];
         return '<div class="dis-code"><pre class="brush: '.$type.'; toolbar: false">'.$code.'</pre></div>';
     }
     /**
@@ -278,7 +280,8 @@ class disNewBBCodeParser extends disParser {
      */
     public static function parseEmailCallback($matches) {
         if (empty($matches[1])) return '';
-        $message = str_replace(array('<br>','<br />','<br/>'),'',$matches[1]);
+        //$message = str_replace(array('<br>','<br />','<br/>'),'',$matches[1]);
+        $message = $matches[1];
         return self::encodeEmail($message);
     }
     /**
@@ -289,7 +292,8 @@ class disNewBBCodeParser extends disParser {
      */
     public static function parseComplexEmailCallback($matches) {
         if (empty($matches[1])) return '';
-        $message = str_replace(array('<br>','<br />','<br/>'),'',$matches[1]);
+        //$message = str_replace(array('<br>','<br />','<br/>'),'',$matches[1]);
+        $messages = $matches[1];
         if (empty($matches[2])) $matches[2] = $matches[1];
         return self::encodeEmail($message,$matches[2]);
     }
@@ -327,7 +331,8 @@ class disNewBBCodeParser extends disParser {
      */
     public static function parseListCallback($matches) {
         if (empty($matches[1])) return '';
-        $message = str_replace(array('<br>','<br />','<br/>'),'',self::stripBRTags($matches[1]));
+        //$message = str_replace(array('<br>','<br />','<br/>'),'',self::stripBRTags($matches[1]));
+        $message = $matches[1];
         $message = '<ul class="dis-ul">'.$message.'</ul>';
         return $message;
     }
@@ -339,7 +344,8 @@ class disNewBBCodeParser extends disParser {
      */
     public static function parseOListCallback($matches) {
         if (empty($matches[1])) return '';
-        $message = str_replace(array('<br>','<br />','<br/>'),'',self::stripBRTags($matches[1]));
+        //$message = str_replace(array('<br>','<br />','<br/>'),'',self::stripBRTags($matches[1]));
+        $message = $matches[1];
         $message = '<ol class="dis-ol">'.$message.'</ol>';
         return $message;
     }
@@ -390,6 +396,7 @@ class disNewBBCodeParser extends disParser {
      * @return string
      */
     public static function stripBRTags($str) {
+        return $str;
         return str_replace(array('<br>','<br />','<br/>'),'',$str);
     }
 
@@ -537,7 +544,7 @@ class disNewBBCodeParser extends disParser {
     public function cleanAndParse ($message) {
         /* leave only \n linebreaks */
 	    $message = strtr($message, array("\r" => ''));
-        $message = str_replace(array('<br>','<br />','<br/>'),"\n",$message);
+        //$message = str_replace(array('<br>','<br />','<br/>'),"\n",$message);
 
 	    /* convert from smf imported tags, entities */
         $message = str_replace('&nbsp;',' ',$message);
