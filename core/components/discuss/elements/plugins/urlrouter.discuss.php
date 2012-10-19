@@ -154,6 +154,12 @@ foreach ($manifest as $key => $value) {
             break;
         }
     }
+    elseif (strpos($request, $key)===0) {
+        $parsed = url_parser($key, $request, $manifest['global']['furl'], $discuss);
+        if (is_array($parsed)) {
+            break;
+        }
+    }
 }
 if (!is_array($parsed)) {
     $parsed = url_parser('global', $request, $manifest['global']['furl'], $discuss);
@@ -164,10 +170,8 @@ if (!is_array($parsed)) {
 
 foreach($parsed as $paramkey => $paramvalue) {
     $modx->request->parameters['GET'][$paramkey]=$paramvalue;
-    $_GET[$paramkey]=$paramvalue;
     if(empty($modx->request->parameters['POST'][$paramkey])) {
         $modx->request->parameters['REQUEST'][$paramkey]=$paramvalue;
-        $_REQUEST[$paramkey]=$paramvalue;
     }
 }
 $modx->sendForward($modx->getOption('discuss.forums_resource_id'));
